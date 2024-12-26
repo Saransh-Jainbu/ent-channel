@@ -3,9 +3,9 @@ import Container from '@mui/material/Container';
 
 const ENTChannelSection = () => {
   return (
-    <div className="grid grid-cols-2 min-h-screen w-full">
+    <div className="clearfix min-h-screen">
       {/* Left Section */}
-      <div className="w-full p-8 bg-gradient-to-br from-purple-600 to-blue-400">
+      <div className="float-left w-1/2 p-8 bg-gradient-to-br from-purple-600 to-blue-400">
         <div className="flex flex-col justify-center h-full">
           <h1 className="text-[48px] font-extrabold text-white leading-tight mb-6">
             Dr. Ajay ENT Channel:
@@ -19,7 +19,7 @@ const ENTChannelSection = () => {
       </div>
 
       {/* Right Section */}
-      <div className="w-full p-8 flex items-center justify-center">
+      <div className="float-right w-1/2 p-8">
         <img
           src="test.JPG"
           alt="Student"
