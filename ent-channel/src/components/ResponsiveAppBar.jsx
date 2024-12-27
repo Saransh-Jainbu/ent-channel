@@ -36,13 +36,12 @@ function ResponsiveAppBar() {
     <AppBar
       position="static"
       sx={{
-        borderRadius: "10px", // Rounded corners
         background:
-          "linear-gradient(135deg,  rgb(84, 18, 155),rgba(0, 105, 255, 0.4))",
+          "linear-gradient(135deg, #1e3c72,rgb(148, 228, 253))", // Changed to a more appealing gradient
         backgroundBlendMode: "darken",
+        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
       }}
     >
-      {" "}
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -55,17 +54,17 @@ function ResponsiveAppBar() {
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "'Lato', sans-serif",
-              fontWeight: 600, // Lighter font-weight for elegance
-              letterSpacing: ".1rem", // Slightly reduced for better balance
+              fontWeight: 600,
+              letterSpacing: ".1rem",
               color: "inherit",
               textDecoration: "none",
-              padding: "5px 1px", // Adds padding for better visual balance
-              borderRadius: "8px", // Rounded corners for a softer look
-              transition: "all 0.3s ease", // Smooth transition for hover effect
+              padding: "5px 1px",
+              borderRadius: "8px",
+              transition: "all 0.3s ease",
               "&:hover": {
-                color: "#00BFFF", // Subtle blue hover effect
-                transform: "scale(1.05)", // Slight zoom effect on hover
-                textShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)", // Light shadow for hover effect
+                color: "#00BFFF",
+                transform: "scale(1.05)",
+                textShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
               },
             }}
           >
@@ -130,7 +129,19 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  fontFamily: "'Lato', sans-serif",
+                  fontWeight: 500,
+                  letterSpacing: ".1rem",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    color: "#00BFFF",
+                    transform: "scale(1.05)",
+                  },
+                }}
               >
                 {page}
               </Button>
