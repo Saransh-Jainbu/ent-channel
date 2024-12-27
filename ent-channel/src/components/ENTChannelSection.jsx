@@ -1,5 +1,5 @@
-import React from 'react';
-import Container from '@mui/material/Container';
+import React from "react";
+import Container from "@mui/material/Container";
 
 const ENTChannelSection = () => {
   return (
@@ -13,7 +13,8 @@ const ENTChannelSection = () => {
             Precision Care for Ears, Nose, and Throat!
           </h1>
           <p className="text-xl text-white">
-            Providing top-tier specialized care with the latest technology and expertise.
+            Providing top-tier specialized care with the latest technology and
+            expertise.
           </p>
         </div>
       </div>
