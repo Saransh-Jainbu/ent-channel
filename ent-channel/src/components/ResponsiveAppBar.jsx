@@ -36,10 +36,9 @@ function ResponsiveAppBar() {
     <AppBar
       position="static"
       sx={{
-        background:
-          "linear-gradient(135deg, #1e3c72,rgb(148, 228, 253))", // Changed to a more appealing gradient
+        background: "linear-gradient(135deg, #1e3c72,rgb(148, 228, 253))", 
         backgroundBlendMode: "darken",
-        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)", // Subtle shadow for depth
+        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)", 
       }}
     >
       <Container maxWidth="xl">
