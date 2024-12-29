@@ -9,7 +9,7 @@ const App = () => {
       <ResponsiveAppBar />
       <main className="w-full">
         <ENTChannelSection />
-        <Info /> {}
+        <Info /> 
       </main>
     </div>
   );
