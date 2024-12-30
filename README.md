@@ -56,32 +56,34 @@ ent-channel/
 └── README.md
 ```
 
-Key Components 🔑
-1. ResponsiveAppBar
-Navigation header
-Responsive menu system
-Brand identity
-2. ENTChannelSection
-Hero section
-Main messaging
-Call-to-action buttons
-3. Info
-Service cards
-Medical information
-Interactive elements
-4. BookAppointment
-Appointment scheduling
-Contact information
-Service selection
-5. VisitUs
-Location information
-Map integration
-Directions
-Contributing 🤝
-Fork the repository
-Create feature branch (git checkout -b feature/YourFeature)
-Commit changes (git commit -m 'Add YourFeature')
-Push to branch (git push origin feature/YourFeature)
-Open Pull Request
-License 📄
+## Key Components 🔑
+1. **ResponsiveAppBar**
+    - Navigation header
+    - Responsive menu system
+    - Brand identity
+2. **ENTChannelSection**
+    - Hero section
+    - Main messaging
+    - Call-to-action buttons
+3. **Info**
+    - Service cards
+    - Medical information
+    - Interactive elements
+4. **BookAppointment**
+    - Appointment scheduling
+    - Contact information
+    - Service selection
+5. **VisitUs**
+    - Location information
+    - Map integration
+    - Directions
+
+## Contributing 🤝
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m 'Add YourFeature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
+
+## License 📄
 MIT License - feel free to use this project for your own purposes.
