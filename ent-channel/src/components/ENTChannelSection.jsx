@@ -1,6 +1,6 @@
 import React from "react";
 import { IoMdStar } from "react-icons/io";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 
 const ENTChannelSection = () => {
   return (
@@ -33,7 +33,7 @@ const ENTChannelSection = () => {
             <div className="relative w-full h-[350px] rounded-3xl shadow-lg">
               {}
               <motion.img
-                src="aja.jpg" 
+                src="aja.jpg"
                 alt="Student"
                 className="w-full h-full object-cover rounded-3xl border-8 border-white"
                 whileHover={{ scale: 1.05 }}

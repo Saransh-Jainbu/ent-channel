@@ -27,8 +27,8 @@ function BookAppointment() {
         <p className="text-gray-600 font-rubik text-lg leading-relaxed">
           Choose our specialized ENT care for all your ear, nose, and throat
           concerns. Our expert doctors are dedicated to providing top-tier
-          treatments for hearing loss, sinus issues, throat infections, and more.
-          Get the care you need with our advanced diagnostic tools and
+          treatments for hearing loss, sinus issues, throat infections, and
+          more. Get the care you need with our advanced diagnostic tools and
           personalized treatment plans.
         </p>
 
@@ -44,7 +44,10 @@ function BookAppointment() {
               key={index}
               className="flex items-center text-gray-800 text-xl font-semibold"
             >
-              <FontAwesomeIcon icon={faCircleCheck} className="text-blue-500 mr-3" />
+              <FontAwesomeIcon
+                icon={faCircleCheck}
+                className="text-blue-500 mr-3"
+              />
               {feature}
             </p>
           ))}

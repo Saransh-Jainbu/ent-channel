@@ -3,6 +3,7 @@ import ResponsiveAppBar from "./components/ResponsiveAppBar";
 import ENTChannelSection from "./components/ENTChannelSection";
 import Info from "./components/info";
 import BookAppointment from "./components/BookAppointment";
+import VisitUs from "./components/VisitUs";
 
 const App = () => {
   return (
@@ -10,8 +11,9 @@ const App = () => {
       <ResponsiveAppBar />
       <main className="w-full">
         <ENTChannelSection />
-        <Info /> 
+        <Info />
         <BookAppointment />
+        <VisitUs />
       </main>
     </div>
   );
