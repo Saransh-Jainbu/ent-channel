@@ -4,6 +4,7 @@ import ENTChannelSection from "./components/ENTChannelSection";
 import Info from "./components/info";
 import BookAppointment from "./components/BookAppointment";
 import VisitUs from "./components/VisitUs";
+import BookAppointment1 from "./components/BookAppointment1";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Info />
         <BookAppointment />
         <VisitUs />
+        <BookAppointment1 />
       </main>
     </div>
   );
