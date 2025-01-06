@@ -37,48 +37,81 @@ const BookAppointment = () => {
     e.preventDefault();
     console.log("Appointment Details:", formData);
     alert("Appointment booked successfully!");
-    // Add backend integration here (e.g., send data to server)
   };
 
   return (
     <Box
       className="bg-gradient-to-br from-blue-100 to-teal-200"
       sx={{
-        height: "60vh", // Reduced height to 40% of the viewport
+        height: "60vh", // Set height to 60% of the viewport
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        px: 2,
+        px: 3,
+        py: 2,
+        position: "relative",
+        overflow: "hidden",
       }}
     >
+      {/* Decorative Elements */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: "-50px",
+          right: "-50px",
+          width: "150px",
+          height: "150px",
+          backgroundColor: "rgba(0, 0, 0, 0.05)",
+          borderRadius: "50%",
+          zIndex: 0,
+        }}
+      />
+      <Box
+        sx={{
+          position: "absolute",
+          bottom: "-70px",
+          left: "-70px",
+          width: "200px",
+          height: "200px",
+          backgroundColor: "rgba(0, 0, 0, 0.03)",
+          borderRadius: "50%",
+          zIndex: 0,
+        }}
+      />
+
       <Box
         sx={{
           maxWidth: "md",
           width: "100%",
+          position: "relative",
+          zIndex: 1,
         }}
       >
         <Typography
-          variant="h5"
+          variant="h4"
           sx={{
             fontWeight: "bold",
             textAlign: "center",
-            mb: 2,
+            mb: 3,
+            color: "black",
+            textShadow: "0px 2px 4px rgba(0, 0, 0, 0.2)",
           }}
         >
           Book an Appointment
         </Typography>
 
         <Paper
-          elevation={4}
+          elevation={6}
           sx={{
-            p: 2, // Compact padding for a smaller section
-            borderRadius: "16px",
-            backgroundColor: "rgba(255, 255, 255, 0.8)", // Slight transparency for better gradient visibility
-            backdropFilter: "blur(8px)", // Optional glass effect
+            p: 3,
+            borderRadius: "24px",
+            backgroundColor: "rgba(255, 255, 255, 0.9)",
+            backdropFilter: "blur(10px)",
+            boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
           }}
         >
           <form onSubmit={handleSubmit}>
-            <Grid container spacing={1}>
+            <Grid container spacing={2}>
               {/* Name Field */}
               <Grid item xs={12}>
                 <TextField
@@ -88,6 +121,10 @@ const BookAppointment = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  sx={{
+                    borderRadius: "8px",
+                    backgroundColor: "white",
+                  }}
                 />
               </Grid>
 
@@ -103,6 +140,10 @@ const BookAppointment = () => {
                   type="tel"
                   inputProps={{ pattern: "[0-9]{10}" }}
                   helperText="Enter a valid 10-digit phone number"
+                  sx={{
+                    borderRadius: "8px",
+                    backgroundColor: "white",
+                  }}
                 />
               </Grid>
 
@@ -113,7 +154,9 @@ const BookAppointment = () => {
                     label="Appointment Date"
                     value={formData.date}
                     onChange={handleDateChange}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
+                    renderInput={(params) => (
+                      <TextField {...params} fullWidth />
+                    )}
                     required
                   />
                 </LocalizationProvider>
@@ -126,7 +169,9 @@ const BookAppointment = () => {
                     label="Appointment Time"
                     value={formData.time}
                     onChange={handleTimeChange}
-                    renderInput={(params) => <TextField {...params} fullWidth />}
+                    renderInput={(params) => (
+                      <TextField {...params} fullWidth />
+                    )}
                     required
                   />
                 </LocalizationProvider>
@@ -137,12 +182,21 @@ const BookAppointment = () => {
                 <Button
                   type="submit"
                   variant="contained"
-                  color="primary"
                   fullWidth
                   sx={{
                     fontWeight: "bold",
                     textTransform: "none",
-                    py: 1,
+                    py: 1.5,
+                    borderRadius: "12px",
+                    background:
+                      "linear-gradient(90deg, rgba(0,176,255,1) 0%, rgba(0,212,255,1) 100%)",
+                    color: "white",
+                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.3)",
+                    "&:hover": {
+                      background:
+                        "linear-gradient(90deg, rgba(0,176,255,1) 0%, rgba(0,176,200,1) 100%)",
+                      boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.4)",
+                    },
                   }}
                 >
                   Book Appointment
