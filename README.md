@@ -86,4 +86,5 @@ ent-channel/
 5. Open a Pull Request
 
 ## License 📄
-MIT License - feel free to use this project for your own purposes.
+MIT License - feel free to use this project for your own purposes. ENT Channel - Medical Practice Website
+
