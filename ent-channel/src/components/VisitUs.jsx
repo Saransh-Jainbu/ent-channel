@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Button, Paper } from "@mui/material";
+import { Box, Typography, Button, Paper, Divider } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PhoneIcon from "@mui/icons-material/Phone";
@@ -21,28 +21,28 @@ const VisitUs = () => {
       }}
     >
       <Typography
-  variant="h4"
-  sx={{
-    fontWeight: "bold",
-    textAlign: "center",
-    mb: 1, // Reduced margin-bottom
-  }}
->
-  Visit Us
-</Typography>
+        variant="h4"
+        sx={{
+          fontWeight: "bold",
+          textAlign: "center",
+          mb: 1, // Reduced margin-bottom
+        }}
+      >
+        Visit Us
+      </Typography>
 
-<Typography
-  variant="subtitle1"
-  sx={{
-    fontStyle: "italic",
-    color: "text.secondary",
-    textAlign: "center",
-    mb: 6,
-    mt: 1, // Added small margin-top for better spacing
-  }}
->
-  "Experience the best care at the heart of Preet Vihar"
-</Typography>
+      <Typography
+        variant="subtitle1"
+        sx={{
+          fontStyle: "italic",
+          color: "text.secondary",
+          textAlign: "center",
+          mb: 6,
+          mt: 1, // Added small margin-top for better spacing
+        }}
+      >
+        "Experience the best care at the heart of Preet Vihar"
+      </Typography>
 
       <Box
         sx={{
@@ -53,73 +53,74 @@ const VisitUs = () => {
       >
         {/* Map Section */}
         <Box
-  sx={{
-    flex: 1,
-    position: "relative",
-    borderRadius: "16px",
-    overflow: "visible", // Ensure no content is clipped
-    boxShadow: 3,
-  }}
->
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.5799048895674!2d77.2981841!3d28.6423502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb4fffb2ba09%3A0x75b612b2f95191d3!2sDr%20Ajay%20Jain&#39;s%20ENT%20Clinic!5e0!3m2!1sen!2sin!4v1735589541043!5m2!1sen!2sin&zoom=14"
-    width="100%"
-    height="100%"
-    style={{
-      border: "none",
-      display: "block",
-      minHeight: "400px", // Set a minimum height to avoid clipping
-    }}
-    allowFullScreen
-    loading="lazy"
-  ></iframe>
-  <Box
-    sx={{
-      display: "flex",
-      justifyContent: "space-evenly",
-      alignItems: "center",
-      p: 2,
-      background: "#fff",
-      position: "absolute",
-      bottom: 0,
-      left: 0,
-      width: "100%",
-      borderTop: "1px solid #ddd",
-    }}
-  >
-    <Button
-      variant="outlined"
-      startIcon={<GoogleIcon />}
-      href={googleMapsLink}
-      target="_blank"
-      sx={{
-        fontWeight: "bold",
-        textTransform: "none",
-        color: "#4285F4",
-        borderColor: "#4285F4",
-        ":hover": { backgroundColor: "#e8f0fe" },
-      }}
-    >
-      Google Maps
-    </Button>
-    <Button
-      variant="outlined"
-      startIcon={<AppleIcon />}
-      href={appleMapsLink}
-      target="_blank"
-      sx={{
-        fontWeight: "bold",
-        textTransform: "none",
-        color: "#000",
-        borderColor: "#000",
-        ":hover": { backgroundColor: "#f2f2f2" },
-      }}
-    >
-      Apple Maps
-    </Button>
-  </Box>
-</Box>
+          sx={{
+            flex: 1,
+            position: "relative",
+            borderRadius: "16px",
+            overflow: "visible", // Ensure no content is clipped
+            boxShadow: 3,
+          }}
+        >
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.5799048895674!2d77.2981841!3d28.6423502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb4fffb2ba09%3A0x75b612b2f95191d3!2sDr%20Ajay%20Jain&#39;s%20ENT%20Clinic!5e0!3m2!1sen!2sin!4v1735589541043!5m2!1sen!2sin&zoom=14"
+            width="100%"
+            height="100%"
+            style={{
+              border: "none",
+              display: "block",
+              minHeight: "400px", // Set a minimum height to avoid clipping
+            }}
+            allowFullScreen
+            loading="lazy"
+          ></iframe>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-evenly",
+              alignItems: "center",
+              p: 2,
+              background: "#fff",
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              width: "100%",
+              borderTop: "1px solid #ddd",
+            }}
+          >
+            <Button
+              variant="outlined"
+              startIcon={<GoogleIcon />}
+              href={googleMapsLink}
+              target="_blank"
+              sx={{
+                fontWeight: "bold",
+                textTransform: "none",
+                color: "#4285F4",
+                borderColor: "#4285F4",
+                ":hover": { backgroundColor: "#e8f0fe" },
+              }}
+            >
+              Google Maps
+            </Button>
+            <Button
+              variant="outlined"
+              startIcon={<AppleIcon />}
+              href={appleMapsLink}
+              target="_blank"
+              sx={{
+                fontWeight: "bold",
+                textTransform: "none",
+                color: "#000",
+                borderColor: "#000",
+                ":hover": { backgroundColor: "#f2f2f2" },
+              }}
+            >
+              Apple Maps
+            </Button>
+          </Box>
+        </Box>
 
+        <Divider sx={{ my: 4 }} /> {/* Divider Between Sections */}
 
         {/* Contact Details */}
         <Box
@@ -204,7 +205,9 @@ const VisitUs = () => {
         </Box>
       </Box>
     </Box>
+    
   );
+  
 };
 
 export default VisitUs;

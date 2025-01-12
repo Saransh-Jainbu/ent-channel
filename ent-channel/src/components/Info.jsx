@@ -1,10 +1,7 @@
 import React from "react";
 import InformationCard from "./InformationCard";
-import {
-  faEarDeaf,
-  faLungs,
-  faSyringe,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEarDeaf, faLungs, faSyringe } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 
 function Info() {
   return (
@@ -13,7 +10,7 @@ function Info() {
         <h3 className="text-4xl font-bold font-poppins">
           <span className="relative">
             What We Do
-            <span className="absolute w-3/4 h-1 bg-[#9D2553] rounded-lg left-0 -bottom-3"></span>
+            <span className="absolute w-3/4 h-1 bg-[#9D2553] rounded-lg left-0 -bottom-3 animate-pulseLine"></span>
           </span>
         </h3>
         <p className="my-16 mx-auto text-gray-600 font-rubik text-lg leading-7 tracking-wide max-w-3xl">
@@ -49,6 +46,16 @@ function Info() {
             icon={faSyringe}
           />
         </div>
+      </div>
+
+      {/* Full-Width Fancy Animated Divider */}
+      <div className="py-6">
+        <motion.div
+          className="border-t-4 border-gradient-to-r from-teal-400 via-blue-400 to-purple-500 w-screen mx-auto"
+          initial={{ width: 0 }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 1 }}
+        />
       </div>
     </div>
   );
