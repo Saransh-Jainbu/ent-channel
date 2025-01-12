@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import TextField from "@mui/material/TextField";  // Import TextField
 
 const Form = () => {
   const [appointmentDateTime, setAppointmentDateTime] = useState(dayjs());
@@ -122,8 +123,8 @@ const Form = () => {
                       value={appointmentDateTime}
                       onChange={(newValue) => setAppointmentDateTime(newValue)}
                       renderInput={(params) => (
-                        <input
-                          {...params.inputProps}
+                        <TextField
+                          {...params}
                           className="w-full p-2 border border-gray-300 rounded"
                         />
                       )}
