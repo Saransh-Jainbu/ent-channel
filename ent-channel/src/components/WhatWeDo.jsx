@@ -3,7 +3,7 @@ import InformationCard from "./InformationCard";
 import { faEarDeaf, faLungs, faSyringe } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 
-function Info() {
+function WhatWeDo() {
   return (
     <div className="px-8 text-center bg-white" id="services">
       <div className="my-16">
@@ -61,4 +61,4 @@ function Info() {
   );
 }
 
-export default Info;
+export default WhatWeDo;

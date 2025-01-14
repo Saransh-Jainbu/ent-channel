@@ -2,7 +2,7 @@ import React from "react";
 import { IoMdStar } from "react-icons/io";
 import { motion } from "framer-motion";
 
-const ENTChannelSection = () => {
+const HeroSection = () => {
   return (
     <div>
       <div className="flex flex-col md:flex-row min-h-[80vh] bg-gradient-to-br from-lavender-300 to-mint-300">
@@ -76,4 +76,4 @@ const ENTChannelSection = () => {
   );
 };
 
-export default ENTChannelSection;
+export default HeroSection;
