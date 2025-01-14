@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function InformationCard({ title, description, icon }) {
   return (
-    <div className="flex flex-col items-center">
+    
+    <div id="information-card" className="flex flex-col items-center">
       <div className="mb-4 p-4 bg-[#DCE6FF] rounded-full shadow-lg">
         <FontAwesomeIcon icon={icon} size="2x" className="text-[#2C96FF]" />
       </div>

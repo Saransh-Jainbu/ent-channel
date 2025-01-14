@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    <div>
+    
+    <div id="hero-section">
       <div className="flex flex-col md:flex-row min-h-[80vh] bg-gradient-to-br from-lavender-300 to-mint-300">
         <div className="flex-1 p-8">
           <div className="max-w-2xl mx-auto flex flex-col justify-center h-full">
@@ -73,6 +74,7 @@ const HeroSection = () => {
         />
       </div>
     </div>
+    
   );
 };
 
