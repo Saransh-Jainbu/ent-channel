@@ -23,6 +23,7 @@ const VisitUs = () => {
           maxWidth: "lg",
           mx: "auto",
         }}
+        
       >
         <Typography
           variant="h4"
