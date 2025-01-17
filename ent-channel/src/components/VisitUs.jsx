@@ -17,6 +17,7 @@ const VisitUs = () => {
 
     
       <Box
+        id="visit-us"
         sx={{
           px: 4,
           py: 8,

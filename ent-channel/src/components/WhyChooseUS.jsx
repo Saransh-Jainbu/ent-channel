@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion"; // <-- Added this import
+import { motion } from "framer-motion";
 
 function WhyChooseUs() {
   const handleBookAppointmentClick = () => {
@@ -9,7 +9,7 @@ function WhyChooseUs() {
   };
 
   return (
-    <div>
+    <div id="why-choose-us">
       <div className="p-8 flex flex-wrap lg:flex-nowrap items-center gap-8 bg-gradient-to-br from-lavender-300 to-mint-300 min-h-[80vh]">
         {/* Image Section */}
         <div className="w-full lg:w-1/2 flex justify-center">
