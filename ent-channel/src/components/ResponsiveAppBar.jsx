@@ -13,7 +13,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 
 const pages = [
  // { name: "Hero Section", id: "hero-section" },
-  { name: "Services", id: "services" },
+  //{ name: "Services", id: "services" },
   { name: "About Us", id: "why-choose-us" },
   { name: "Contact Us", id: "visit-us" },
   { name: "Book Appointment", id: "appointment" },
