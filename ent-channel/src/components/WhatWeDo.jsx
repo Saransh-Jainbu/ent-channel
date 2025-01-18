@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import InformationCard from "./InformationCard";
 import {
   faEarDeaf,
@@ -8,6 +8,28 @@ import {
 import { motion } from "framer-motion";
 
 function WhatWeDo() {
+  const [inView, setInView] = useState(false);
+  const dividerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: 0.5 } // Trigger when 50% of the section is visible
+    );
+
+    if (dividerRef.current) {
+      observer.observe(dividerRef.current);
+    }
+
+    return () => {
+      if (dividerRef.current) {
+        observer.unobserve(dividerRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="px-8 text-center bg-white" id="services">
       <div className="my-16">
@@ -53,11 +75,11 @@ function WhatWeDo() {
       </div>
 
       {/* Full-Width Fancy Animated Divider */}
-      <div className="py-6">
+      <div className="py-6" ref={dividerRef}>
         <motion.div
           className="border-t-4 border-gradient-to-r from-teal-400 via-blue-400 to-purple-500 w-screen mx-auto"
           initial={{ width: 0 }}
-          animate={{ width: "100%" }}
+          animate={inView ? { width: "100%" } : { width: 0 }}
           transition={{ duration: 1 }}
         />
       </div>
