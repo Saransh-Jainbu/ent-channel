@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 
 const HeroSection = () => {
   return (
-    
     <div id="hero-section">
       <div className="flex flex-col md:flex-row min-h-[80vh] bg-gradient-to-br from-lavender-300 to-mint-300">
         <div className="flex-1 p-8">
@@ -18,7 +17,14 @@ const HeroSection = () => {
               Providing top-tier specialized care with the latest technology and
               expertise.
             </p>
-            <button className="px-6 py-3 bg-teal-500 text-white font-semibold text-xl rounded-full shadow-lg hover:bg-teal-600 transition duration-300">
+            <button
+              className="px-6 py-3 bg-teal-500 text-white font-semibold text-xl rounded-full shadow-lg hover:bg-teal-600 transition duration-300"
+              onClick={() => {
+                document
+                  .getElementById("appointment")
+                  .scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               Book Appointment
             </button>
           </div>
@@ -74,7 +80,6 @@ const HeroSection = () => {
         />
       </div>
     </div>
-    
   );
 };
 

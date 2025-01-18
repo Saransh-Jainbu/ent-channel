@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 
 const pages = [
- // { name: "Hero Section", id: "hero-section" },
+  // { name: "Hero Section", id: "hero-section" },
   //{ name: "Services", id: "services" },
   { name: "About Us", id: "why-choose-us" },
   { name: "Contact Us", id: "visit-us" },

@@ -14,8 +14,6 @@ const VisitUs = () => {
 
   return (
     <>
-
-    
       <Box
         id="visit-us"
         sx={{
@@ -24,7 +22,6 @@ const VisitUs = () => {
           maxWidth: "lg",
           mx: "auto",
         }}
-        
       >
         <Typography
           variant="h4"
@@ -151,10 +148,16 @@ const VisitUs = () => {
                   Our Address
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Shop number 1,2,3 DDA Market-1, G-block, Preet Vihar, Vikas Marg, Delhi-92.
+                  Shop number 1,2,3 DDA Market-1, G-block, Preet Vihar, Vikas
+                  Marg, Delhi-92.
                 </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                  Landmark: Enter G-Block of Preet Vihar adjacent to Lajwab Banquet hall or Shree Rathnam restaurant.
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 1 }}
+                >
+                  Landmark: Enter G-Block of Preet Vihar adjacent to Lajwab
+                  Banquet hall or Shree Rathnam restaurant.
                 </Typography>
               </Box>
             </Paper>
@@ -180,7 +183,11 @@ const VisitUs = () => {
                 <Typography variant="body2" color="text.secondary">
                   Sun: Closed
                 </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 1 }}
+                >
                   (Please call the clinic for appointment before coming.)
                 </Typography>
               </Box>

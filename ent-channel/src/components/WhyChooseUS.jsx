@@ -5,7 +5,10 @@ import { motion } from "framer-motion";
 
 function WhyChooseUs() {
   const handleBookAppointmentClick = () => {
-    window.location.href = "/appointment";
+    const appointmentSection = document.getElementById("appointment");
+    if (appointmentSection) {
+      appointmentSection.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (

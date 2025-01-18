@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import TextField from "@mui/material/TextField";  // Import TextField
+import TextField from "@mui/material/TextField"; // Import TextField
 
 const Form = () => {
   const [appointmentDateTime, setAppointmentDateTime] = useState(dayjs());
@@ -44,14 +44,18 @@ const Form = () => {
   };
 
   return (
-<div id="appointment" className="flex flex-col md:flex-row min-h-[80vh] bg-gradient-to-br from-lavender-300 to-mint-300 items-center justify-center">
-<motion.div
+    <div
+      id="appointment"
+      className="flex flex-col md:flex-row min-h-[80vh] bg-gradient-to-br from-lavender-300 to-mint-300 items-center justify-center"
+    >
+      <motion.div
         className="container mx-auto p-8 shadow-lg bg-white rounded-lg"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         style={{
-          boxShadow: "0px -4px 10px rgba(0, 0, 0, 0.1), 0px 4px 10px rgba(0, 0, 0, 0.1)", // Added shadow for both top and bottom
+          boxShadow:
+            "0px -4px 10px rgba(0, 0, 0, 0.1), 0px 4px 10px rgba(0, 0, 0, 0.1)", // Added shadow for both top and bottom
         }}
       >
         <div className="flex flex-wrap">
@@ -116,7 +120,9 @@ const Form = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm mb-2">Appointment Date & Time</label>
+                <label className="block text-sm mb-2">
+                  Appointment Date & Time
+                </label>
                 <motion.div className="mb-4">
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DateTimePicker
@@ -140,9 +146,7 @@ const Form = () => {
                   rows="4"
                 />
               </div>
-              <motion.button
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-              >
+              <motion.button className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
                 Make An Appointment
               </motion.button>
             </div>

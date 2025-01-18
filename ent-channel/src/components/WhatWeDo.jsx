@@ -1,6 +1,10 @@
 import React from "react";
 import InformationCard from "./InformationCard";
-import { faEarDeaf, faLungs, faSyringe } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEarDeaf,
+  faLungs,
+  faSyringe,
+} from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 
 function WhatWeDo() {
