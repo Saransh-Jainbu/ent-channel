@@ -16,7 +16,7 @@ function WhatWeDo() {
       ([entry]) => {
         setInView(entry.isIntersecting);
       },
-      { threshold: 0.5 } // Trigger when 50% of the section is visible
+      { threshold: 0.5 }, // Trigger when 50% of the section is visible
     );
 
     if (dividerRef.current) {
