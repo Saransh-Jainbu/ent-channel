@@ -39,7 +39,7 @@ const Footer = () => {
                         color="inherit"
                         sx={{ flexGrow: 1, textAlign: "center" }}
                     >
-                        &copy; 2023 Your Company. All rights reserved.
+                        &copy; 2025 Dr.Ajay Jain Ent Channel. All rights reserved.
                     </Typography>
                     <Box sx={{ display: "flex" }}>
                         {footerPages.map((page) => (
