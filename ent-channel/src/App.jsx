@@ -6,6 +6,7 @@ import BookAppointment from "./components/BookAppointment";
 import WhyChooseUs from "./components/WhyChooseUS";
 import WhatWeDo from "./components/WhatWeDo";
 import Footer from "./components/footer";
+import AboutDoctor from "./components/aboutme";
 const App = () => {
   return (
     <div className="bg-white text-black">
@@ -16,6 +17,7 @@ const App = () => {
         <WhyChooseUs />
         <VisitUs />
         <BookAppointment />
+        <AboutDoctor />
         <Footer />
       </main>
     </div>

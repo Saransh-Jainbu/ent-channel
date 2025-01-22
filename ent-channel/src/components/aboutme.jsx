@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const AboutDoctor = () => {
-  // Variants for slide-in animations
+  const [inView, setInView] = useState(false);
+
+  // Slide-in animation variants
   const slideIn = (direction = "left") => ({
     hidden: { opacity: 0, x: direction === "left" ? -100 : 100 },
     visible: {
@@ -12,23 +14,22 @@ const AboutDoctor = () => {
     },
   });
 
-  // Pulse effect for pointer animation
-  const pulseEffect = {
-    hidden: { scale: 0.8, opacity: 0.5 },
-    visible: {
-      scale: [1.1, 1],
-      opacity: [0.8, 1],
-      transition: {
-        duration: 0.8,
-        ease: "easeInOut",
-        repeat: Infinity,
-        repeatType: "reverse",
-      },
-    },
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = document.querySelector("#about-doctor");
+      const rect = section.getBoundingClientRect();
+      setInView(rect.top < window.innerHeight && rect.bottom > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="relative flex flex-col md:flex-row min-h-[90vh] bg-gradient-to-br from-lavender-300 to-mint-300 items-center justify-center px-6 py-10 overflow-hidden">
+    <div
+      id="about-doctor"
+      className="relative flex flex-col md:flex-row min-h-[90vh] bg-gradient-to-br from-lavender-300 to-mint-300 items-center justify-center px-6 py-10 overflow-hidden"
+    >
       {/* Decorative Pointer Animation */}
       <motion.div
         className="absolute w-16 h-16 bg-teal-400 rounded-full blur-lg"
@@ -44,15 +45,20 @@ const AboutDoctor = () => {
       ></motion.div>
       <motion.div
         className="absolute top-10 right-10 w-12 h-12 bg-teal-300 rounded-full blur-md"
-        variants={pulseEffect}
-        initial="hidden"
-        animate="visible"
+        animate={{ scale: [1.1, 1], opacity: [0.8, 1] }}
+        transition={{
+          duration: 0.8,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "reverse",
+        }}
       ></motion.div>
+
       {/* Content */}
       <motion.div
         className="max-w-5xl w-full text-center md:text-left space-y-10"
         initial="hidden"
-        animate="visible"
+        animate={inView ? "visible" : "hidden"}
         transition={{ staggerChildren: 0.3 }}
       >
         {/* Heading */}
@@ -226,8 +232,8 @@ const AboutDoctor = () => {
               </li>{" "}
             </ul>{" "}
           </motion.div>{" "}
-        </div>{" "}
-      </motion.div>{" "}
+        </div>
+      </motion.div>
     </div>
   );
 };
