@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  StethoscopeIcon, 
-  ScrollTextIcon, 
-  PhoneIcon, 
+import {
+  StethoscopeIcon,
+  ScrollTextIcon,
+  PhoneIcon,
   CalendarCheckIcon,
   ArrowUpIcon,
   MessageSquareIcon,
-  YoutubeIcon 
+  YoutubeIcon,
 } from "lucide-react";
 
 const ResponsiveNavbar = () => {
@@ -19,7 +19,7 @@ const ResponsiveNavbar = () => {
     { name: "Services", id: "services", icon: StethoscopeIcon },
     { name: "About", id: "services", icon: ScrollTextIcon },
     { name: "Contact", id: "visit-us", icon: PhoneIcon },
-    { name: "Appointments", id: "appointment", icon: CalendarCheckIcon }
+    { name: "Appointments", id: "appointment", icon: CalendarCheckIcon },
   ];
 
   const handleScroll = (id) => {
@@ -38,8 +38,8 @@ const ResponsiveNavbar = () => {
   useEffect(() => {
     const handleScrollPosition = () => {
       setShowScrollTop(window.scrollY > 200);
-      
-      pages.forEach(page => {
+
+      pages.forEach((page) => {
         const element = document.getElementById(page.id);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -57,7 +57,7 @@ const ResponsiveNavbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center space-x-3"
@@ -77,9 +77,9 @@ const ResponsiveNavbar = () => {
               className={`
                 flex items-center space-x-2 text-gray-600 hover:text-blue-600 
                 transition-all duration-300 
-                ${activeSection === page.id 
-                  ? 'text-blue-600 font-semibold' 
-                  : ''}
+                ${
+                  activeSection === page.id ? "text-blue-600 font-semibold" : ""
+                }
               `}
             >
               <page.icon className="h-5 w-5" />
@@ -88,12 +88,12 @@ const ResponsiveNavbar = () => {
           ))}
         </div>
 
-        <motion.button 
+        <motion.button
           className="md:hidden text-gray-600"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           whileTap={{ scale: 0.9 }}
         >
-          {isMenuOpen ? '✕' : '☰'}
+          {isMenuOpen ? "✕" : "☰"}
         </motion.button>
       </div>
 
@@ -113,9 +113,11 @@ const ResponsiveNavbar = () => {
                 className={`
                   px-6 py-4 border-b flex items-center space-x-3 
                   cursor-pointer transition-all
-                  ${activeSection === page.id 
-                    ? 'bg-blue-50 text-blue-600' 
-                    : 'hover:bg-gray-50 text-gray-700'}
+                  ${
+                    activeSection === page.id
+                      ? "bg-blue-50 text-blue-600"
+                      : "hover:bg-gray-50 text-gray-700"
+                  }
                 `}
               >
                 <page.icon className="h-5 w-5" />
