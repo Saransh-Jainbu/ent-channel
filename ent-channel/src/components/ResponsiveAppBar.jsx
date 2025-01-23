@@ -1,248 +1,162 @@
 import React, { useState, useEffect } from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import YouTubeIcon from "@mui/icons-material/YouTube";
+import { motion, AnimatePresence } from "framer-motion";
 
-const pages = [
-  { name: "About Us", id: "why-choose-us" },
-  { name: "Contact Us", id: "visit-us" },
-  { name: "Book Appointment", id: "appointment" },
-];
+const NavIcons = {
+  WhatsApp: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M12.043 6.425a4.055 4.055 0 00-4.106 3.99c0 .884.297 1.707.834 2.386l.117.148-.494 1.788 1.836-.484.145.087a4.017 4.017 0 002.518.868 4.055 4.055 0 004.051-4.005 4.015 4.015 0 00-1.184-2.857 4.062 4.062 0 00-2.857-1.185zm0 6.538a2.493 2.493 0 01-1.564-.54l-1.109.293.297-1.076a2.463 2.463 0 01-.594-1.562 2.537 2.537 0 012.532-2.488 2.514 2.514 0 011.781.738c.476.465.738 1.083.738 1.74a2.537 2.537 0 01-2.532 2.532l.044.043zM12 2a10 10 0 00-8.54 15.34L2 22l4.73-1.48A10 10 0 1012 2z" />
+    </svg>
+  ),
+  YouTube: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+      <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.246 11.626.245 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+    </svg>
+  ),
+  ArrowUp: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+  )
+};
 
-function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = useState(null);
+const ResponsiveNavbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [showWhatsApp, setShowWhatsApp] = useState(false);
-  const [showYouTube, setShowYouTube] = useState(false);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  const pages = [
+    { name: "About Us", id: "why-choose-us" },
+    { name: "Contact Us", id: "visit-us" },
+    { name: "Book Appointment", id: "appointment" }
+  ];
 
   const handleScroll = (id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
+      setIsMenuOpen(false);
     }
-    handleCloseNavMenu();
   };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handleScrollPosition = () => {
-    if (window.scrollY > 100) {
-      setShowScrollTop(true);
-      setShowWhatsApp(true);
-      setShowYouTube(true);
-    } else {
-      setShowScrollTop(false);
-      setShowWhatsApp(false);
-      setShowYouTube(false);
-    }
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", handleScrollPosition);
-    return () => {
-      window.removeEventListener("scroll", handleScrollPosition);
+    const handleScrollPosition = () => {
+      setShowScrollTop(window.scrollY > 100);
     };
+
+    window.addEventListener("scroll", handleScrollPosition);
+    return () => window.removeEventListener("scroll", handleScrollPosition);
   }, []);
 
   return (
-    <>
-      <AppBar
-        position="static"
-        sx={{
-          background: "linear-gradient(135deg, #1e3c72, rgb(148, 228, 253))",
-          backgroundBlendMode: "darken",
-          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
-        }}
-      >
-        <Container maxWidth="xl">
-          <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "'Lato', sans-serif",
-                fontWeight: 600,
-                letterSpacing: ".1rem",
-                color: "inherit",
-                textDecoration: "none",
-                padding: "5px 1px",
-                borderRadius: "8px",
-                transition: "all 0.3s ease",
-                "&:hover": {
-                  color: "#00BFFF",
-                  transform: "scale(1.05)",
-                  textShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
-                },
-              }}
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-blue-600 to-blue-400 shadow-lg">
+      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+        {/* Logo */}
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="flex items-center space-x-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="white">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span className="text-xl font-bold text-white">ENT Channel</span>
+        </motion.div>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex space-x-6">
+          {pages.map((page) => (
+            <motion.button
+              key={page.id}
+              onClick={() => handleScroll(page.id)}
+              whileHover={{ scale: 1.05 }}
+              className="text-white hover:text-blue-200 transition-colors"
             >
-              Ent Channel
-            </Typography>
+              {page.name}
+            </motion.button>
+          ))}
+        </div>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
+        {/* Mobile Menu Toggle */}
+        <motion.button 
+          className="md:hidden text-white"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          whileTap={{ scale: 0.9 }}
+        >
+          {isMenuOpen ? '✕' : '☰'}
+        </motion.button>
+      </div>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden bg-white shadow-lg"
+          >
+            {pages.map((page) => (
+              <motion.div
+                key={page.id}
+                whileHover={{ x: 10 }}
+                onClick={() => handleScroll(page.id)}
+                className="px-4 py-3 border-b hover:bg-blue-50 cursor-pointer"
               >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{ display: { xs: "block", md: "none" } }}
-              >
-                {pages.map((page) => (
-                  <MenuItem key={page.id} onClick={() => handleScroll(page.id)}>
-                    <Typography textAlign="center">{page.name}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
+                {page.name}
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
-                <Button
-                  key={page.id}
-                  onClick={() => handleScroll(page.id)}
-                  sx={{
-                    my: 2,
-                    color: "white",
-                    display: "block",
-                    fontFamily: "'Lato', sans-serif",
-                    fontWeight: 500,
-                    letterSpacing: ".1rem",
-                    transition: "all 0.3s ease",
-                    "&:hover": {
-                      color: "#00BFFF",
-                      transform: "scale(1.05)",
-                    },
-                  }}
-                >
-                  {page.name}
-                </Button>
-              ))}
-            </Box>
-          </Toolbar>
-        </Container>
-      </AppBar>
+      {/* Floating Action Buttons */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <div className="fixed bottom-4 right-4 space-y-4">
+            {/* Scroll to Top */}
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              onClick={scrollToTop}
+              className="bg-blue-500 text-white rounded-full p-3 shadow-lg hover:bg-blue-600"
+            >
+              <NavIcons.ArrowUp />
+            </motion.button>
 
-      {/* Scroll to Top, WhatsApp, and YouTube Buttons */}
-      {showScrollTop && (
-        <>
-          <IconButton
-            onClick={scrollToTop}
-            sx={{
-              position: "fixed",
-              bottom: 120, // Adjusted position for scroll to top
-              right: 20,
-              backgroundColor: "#00BFFF",
-              color: "white",
-              fontSize: "2rem",
-              borderRadius: "50%",
-              padding: "12px",
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-              "&:hover": {
-                backgroundColor: "#00A3C7",
-              },
-            }}
-          >
-            <ArrowUpwardIcon />
-          </IconButton>
+            {/* WhatsApp */}
+            <motion.a
+              href="https://wa.me/1234567890"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-green-500 text-white rounded-full p-3 shadow-lg hover:bg-green-600 block"
+            >
+              <NavIcons.WhatsApp />
+            </motion.a>
 
-          {/* WhatsApp Icon */}
-          <a
-            href="https://wa.me/1234567890"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              position: "fixed",
-              bottom: 180, // Adjusted position to be close to scroll button
-              right: 20,
-              backgroundColor: "#25D366",
-              color: "white",
-              fontSize: "2rem",
-              borderRadius: "50%",
-              padding: "12px",
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              "&:hover": {
-                backgroundColor: "#128C7E",
-              },
-            }}
-          >
-            <WhatsAppIcon />
-          </a>
-
-          {/* YouTube Icon */}
-          <a
-            href="https://www.youtube.com/channel/UC_x5XG1OV2P6uYjRr8wAYeA"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              position: "fixed",
-              bottom: 240, // Adjusted position to match the spacing
-              right: 20,
-              backgroundColor: "#FF0000",
-              color: "white",
-              fontSize: "2rem",
-              borderRadius: "50%",
-              padding: "12px",
-              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              "&:hover": {
-                backgroundColor: "#FF3333",
-              },
-            }}
-          >
-            <YouTubeIcon />
-          </a>
-        </>
-      )}
-    </>
+            {/* YouTube */}
+            <motion.a
+              href="https://www.youtube.com/channel/UC_x5XG1OV2P6uYjRr8wAYeA"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-red-500 text-white rounded-full p-3 shadow-lg hover:bg-red-600 block"
+            >
+              <NavIcons.YouTube />
+            </motion.a>
+          </div>
+        )}
+      </AnimatePresence>
+    </nav>
   );
-}
+};
 
-export default ResponsiveAppBar;
+export default ResponsiveNavbar;
