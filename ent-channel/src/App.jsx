@@ -17,7 +17,6 @@ const App = () => {
         <WhyChooseUs />
         <VisitUs />
         <BookAppointment />
-        <AboutDoctor />
         <Footer />
       </main>
     </div>
