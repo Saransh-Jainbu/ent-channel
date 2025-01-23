@@ -1,9 +1,31 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
+import { CheckCircle, Stethoscope, Microscope, Activity } from "lucide-react";
 
 function WhyChooseUs() {
+  const features = [
+    {
+      icon: Stethoscope,
+      text: "Expert ENT Doctors with Years of Experience",
+      color: "text-blue-600"
+    },
+    {
+      icon: Microscope,
+      text: "Comprehensive Hearing Tests and Advanced Diagnostics",
+      color: "text-teal-600"
+    },
+    {
+      icon: Activity,
+      text: "Cutting-Edge Allergy and Sinus Management",
+      color: "text-green-600"
+    },
+    {
+      icon: CheckCircle,
+      text: "State-of-the-Art Medical Facilities",
+      color: "text-purple-600"
+    }
+  ];
+
   const handleBookAppointmentClick = () => {
     const appointmentSection = document.getElementById("appointment");
     if (appointmentSection) {
@@ -23,48 +45,77 @@ function WhyChooseUs() {
           />
         </div>
 
-        {/* Text Content Section */}
+        {/* Professional Right Side */}
         <div className="w-full lg:w-1/2 space-y-6">
-          <h3 className="text-4xl font-bold font-poppins relative">
-            Why Choose Our ENT Care
-            <span className="block w-3/4 h-1 bg-pink-700 rounded-md mt-2"></span>
-          </h3>
-          <p className="text-gray-600 font-rubik text-lg leading-relaxed">
-            Choose our specialized ENT care for all your ear, nose, and throat
-            concerns. Our expert doctors are dedicated to providing top-tier
-            treatments for hearing loss, sinus issues, throat infections, and
-            more. Get the care you need with our advanced diagnostic tools and
-            personalized treatment plans.
-          </p>
+          <motion.h2 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.6, 
+              delay: 0.2 
+            }}
+            className="text-4xl font-extrabold text-gray-900 
+                        bg-clip-text text-transparent 
+                        bg-gradient-to-r from-blue-600 to-purple-600 
+                        mb-4 leading-tight"
+          >
+            Precision ENT Care
+            <span className="block h-1 bg-gradient-to-r from-blue-500 to-purple-500 w-1/2 mt-3 rounded"></span>
+          </motion.h2>
 
-          {/* Features List */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.6, 
+              delay: 0.3 
+            }}
+            className="text-gray-600 text-lg leading-relaxed mb-6"
+          >
+            Our specialized ENT care combines cutting-edge medical technology 
+            with personalized, compassionate treatment. We deliver precise 
+            diagnostics and innovative solutions for your ear, nose, and 
+            throat health.
+          </motion.p>
+
           <div className="space-y-4">
-            {[
-              "Expert ENT Doctors with Years of Experience",
-              "Comprehensive Hearing Tests and Treatment",
-              "Allergy and Sinus Management",
-              "State-of-the-Art ENT Facilities",
-            ].map((feature, index) => (
-              <p
+            {features.map((feature, index) => (
+              <motion.div
                 key={index}
-                className="flex items-center text-gray-800 text-xl font-semibold"
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: 0.4 + index * 0.1 
+                }}
+                className="flex items-center space-x-4 
+                            p-3 bg-white rounded-xl 
+                            shadow-sm hover:shadow-md 
+                            transition-all duration-300"
               >
-                <FontAwesomeIcon
-                  icon={faCircleCheck}
-                  className="text-blue-500 mr-3"
+                <feature.icon 
+                  className={`${feature.color} flex-shrink-0`} 
+                  size={28} 
                 />
-                {feature}
-              </p>
+                <span className="text-gray-800 font-medium">
+                  {feature.text}
+                </span>
+              </motion.div>
             ))}
           </div>
 
-          {/* Button */}
-          <button
-            onClick={handleBookAppointmentClick}
-            className="mt-4 px-6 py-3 bg-blue-600 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-500 transition"
-          >
-            Book Appointment
-          </button>
+          <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="mt-6 px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition-colors"
+                      onClick={() => {
+                        document
+                          .getElementById("appointment")
+                          .scrollIntoView({ behavior: "smooth" });
+                      }}
+                    >
+                      Book Consultation
+                    </motion.button>
         </div>
       </div>
 
