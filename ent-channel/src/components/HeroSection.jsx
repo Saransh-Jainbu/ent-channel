@@ -1,21 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-
-const PulseWave = () => (
-  <motion.svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 1440 320"
-    className="absolute bottom-0 left-0 w-full overflow-hidden z-0"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-  >
-    <path
-      fill="rgba(37, 99, 235, 0.1)"
-      fillOpacity="1"
-      d="M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,224C1248,203,1344,181,1392,170.7L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-    ></path>
-  </motion.svg>
-);
 
 const StatItem = ({ icon, title, subtitle }) => (
   <motion.div
@@ -32,10 +16,8 @@ const StatItem = ({ icon, title, subtitle }) => (
 );
 
 const HeroSection = () => {
-  const [isImageHovered, setIsImageHovered] = useState(false);
-
   return (
-    <div className="relative bg-white overflow-hidden">
+    <div className="relative bg-gradient-to-br from-blue-50 to-white overflow-hidden pt-16 md:pt-0">
       <div className="container mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center relative z-10">
         {/* Left Content */}
         <motion.div
@@ -132,23 +114,14 @@ const HeroSection = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
           className="relative"
-          onHoverStart={() => setIsImageHovered(true)}
-          onHoverEnd={() => setIsImageHovered(false)}
         >
-          <motion.div
-            className="rounded-2xl overflow-hidden shadow-2xl"
-            animate={{
-              rotate: isImageHovered ? [0, 2, -2, 0] : 0,
-              scale: isImageHovered ? 1.02 : 1,
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            <motion.img
+          <div className="rounded-2xl overflow-hidden shadow-2xl">
+            <img
               src="aja.jpg"
               alt="Dr. Ajay - ENT Specialist"
               className="w-full h-[500px] object-cover"
             />
-          </motion.div>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -158,23 +131,28 @@ const HeroSection = () => {
           >
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="font-bold text-gray-800">Dr. Ajay</h3>
-                <p className="text-sm text-gray-600">Senior ENT Consultant</p>
-              </div>
-              <div className="flex text-yellow-500">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-xl">
-                    ★
-                  </span>
-                ))}
+                <h3 className="font-bold text-lg text-gray-800">Dr. Ajay Kumar</h3>
+                <p className="text-sm text-gray-600 mb-1">Senior ENT Consultant</p>
+                <div className="flex items-center">
+                  <div className="flex space-x-1 mr-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <svg
+                        key={star}
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 text-yellow-400 fill-current"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-500">(4.9)</span>
+                </div>
               </div>
             </div>
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Background Wave */}
-      <PulseWave />
     </div>
   );
 };

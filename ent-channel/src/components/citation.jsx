@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, User, Star } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 const TestimonialCarousel = () => {
   const testimonials = [
@@ -48,34 +48,50 @@ const TestimonialCarousel = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const carouselRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    
+    // Auto-change testimonials
     const interval = setInterval(() => {
-      handleNext();
+      setCurrentIndex((prevIndex) => 
+        isMobile 
+          ? (prevIndex + 1) % testimonials.length 
+          : (prevIndex + 3) % testimonials.length
+      );
     }, 5000);
 
-    return () => clearInterval(interval);
-  }, []);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearInterval(interval);
+    };
+  }, [isMobile, testimonials.length]);
 
   const handleNext = () => {
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 3) % testimonials.length);
-      setIsTransitioning(false);
-    }, 300);
+    setCurrentIndex((prevIndex) => 
+      isMobile 
+        ? (prevIndex + 1) % testimonials.length 
+        : (prevIndex + 3) % testimonials.length
+    );
   };
 
   const handlePrev = () => {
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrentIndex((prevIndex) => (prevIndex - 3 + testimonials.length) % testimonials.length);
-      setIsTransitioning(false);
-    }, 300);
+    setCurrentIndex((prevIndex) => 
+      isMobile 
+        ? (prevIndex - 1 + testimonials.length) % testimonials.length 
+        : (prevIndex - 3 + testimonials.length) % testimonials.length
+    );
   };
 
   const getCurrentTestimonials = () => {
+    if (isMobile) {
+      return [testimonials[currentIndex]];
+    }
     return [
       testimonials[currentIndex],
       testimonials[(currentIndex + 1) % testimonials.length],
@@ -84,11 +100,11 @@ const TestimonialCarousel = () => {
   };
 
   return (
-    <div className="bg-gray-100 py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-bold text-center mb-8 text-gray-800">What Our Patients Say</h2>
+    <div className="bg-gradient-to-br from-blue-50 to-white py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">What Our Patients Say</h2>
         <div className="relative">
-          <div className="flex justify-between mb-6">
+          <div className="flex justify-between mb-6 max-w-4xl mx-auto">
             <button
               onClick={handlePrev}
               className="bg-blue-500 text-white p-3 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 shadow-md"
@@ -103,17 +119,18 @@ const TestimonialCarousel = () => {
             </button>
           </div>
           <div 
-            ref={carouselRef}
-            className="grid grid-cols-3 gap-4 overflow-hidden"
+            className={`
+              max-w-4xl mx-auto
+              ${isMobile 
+                ? 'grid grid-cols-1 gap-4' 
+                : 'grid grid-cols-3 gap-4'
+              } overflow-hidden`
+            }
           >
             {getCurrentTestimonials().map((testimonial, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-500 relative transition-all duration-300 ease-in-out ${
-                  isTransitioning
-                    ? 'opacity-0 transform scale-90 translate-x-4'
-                    : 'opacity-100 transform scale-100 translate-x-0'
-                }`}
+                className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-500 relative"
               >
                 <div className="flex items-start space-x-4 mb-4">
                   <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white font-medium text-lg">
