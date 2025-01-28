@@ -6,6 +6,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import TextField from "@mui/material/TextField";
 
+// Reusable Background Wave Component
 const PulseWave = () => (
   <motion.svg
     xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +23,8 @@ const PulseWave = () => (
   </motion.svg>
 );
 
-const Form = () => {
+const ConsultationForm = () => {
+  // State Management
   const [appointmentDateTime, setAppointmentDateTime] = useState(dayjs());
   const [expandedQuestionIndex, setExpandedQuestionIndex] = useState(null);
   const [formData, setFormData] = useState({
@@ -30,82 +32,125 @@ const Form = () => {
     email: "",
     message: ""
   });
-
-  // Validation state
   const [errors, setErrors] = useState({});
+  const [submissionStatus, setSubmissionStatus] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // FAQ data
+  // FAQ Content
   const faqs = [
     {
       question: "What are the common symptoms of an ENT problem?",
-      answer:
-        "Common symptoms include persistent sore throat, nasal congestion, ear pain, difficulty swallowing, dizziness, and snoring.",
+      answer: "Common symptoms include persistent sore throat, nasal congestion, ear pain, difficulty swallowing, dizziness, and snoring.",
     },
     {
       question: "When should I see an ENT doctor?",
-      answer:
-        "You should see an ENT doctor if you have persistent sinus infections, hearing loss, balance issues, or difficulty breathing.",
+      answer: "You should see an ENT doctor if you have persistent sinus infections, hearing loss, balance issues, or difficulty breathing.",
     },
     {
       question: "What should I bring to my first ENT appointment?",
-      answer:
-        "Bring your medical history, a list of current medications, and any previous test results related to your condition.",
+      answer: "Bring your medical history, a list of current medications, and any previous test results related to your condition.",
     },
     {
       question: "What treatments do ENT doctors provide?",
-      answer:
-        "ENT doctors provide treatments for allergies, infections, hearing loss, voice disorders, and perform surgeries for sinus issues, tonsil removal, and more.",
+      answer: "ENT doctors provide treatments for allergies, infections, hearing loss, voice disorders, and perform surgeries for sinus issues, tonsil removal, and more.",
     },
     {
       question: "Are ENT conditions treatable without surgery?",
-      answer:
-        "Many ENT conditions are treatable with medication or therapy. Surgery is usually recommended only for severe cases.",
+      answer: "Many ENT conditions are treatable with medication or therapy. Surgery is usually recommended only for severe cases.",
     },
   ];
 
-  // Form validation
+  // Form Validation
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "Name is required";
+    
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "Name must be at least 2 characters long";
+    }
+
+    // Email validation
     if (!formData.email.trim()) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Email is invalid";
     }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      // TODO: Implement actual submission logic
-      console.log("Form submitted", formData);
-      alert("Appointment request submitted successfully!");
-    }
-  };
-
-  // Handle input changes
+  // Handle Input Changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
+    setFormData(prevData => ({
+      ...prevData,
       [name]: value
     }));
   };
 
+  // Form Submission Handler
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Reset previous submission status
+    setSubmissionStatus(null);
+    
+    // Validate form
+    if (!validateForm()) return;
+
+    // Set submitting state
+    setIsSubmitting(true);
+
+    try {
+      // Prepare submission data
+      const submissionData = {
+        ...formData,
+        appointmentDateTime: appointmentDateTime.toISOString()
+      };
+
+      // Replace with your actual Google Apps Script Web App URL
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzKEfhDrpN_6r6VuegAUpj9XXmwWsPCk9qZuDD446kQCRmxmb8Mi1d5be9V2GdOhAq6ng/exec', {
+        method: 'POST',
+        mode: 'no-cors', // Required for Google Apps Script
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData)
+      });
+
+      // Success handling
+      setSubmissionStatus('success');
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        message: ""
+      });
+      setAppointmentDateTime(dayjs());
+
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmissionStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Toggle FAQ Question
   const toggleQuestion = (index) => {
-    setExpandedQuestionIndex(expandedQuestionIndex === index ? null : index);
+    setExpandedQuestionIndex(
+      expandedQuestionIndex === index ? null : index
+    );
   };
 
   return (
-    <div
-      id="appointment"
-      className="relative bg-white overflow-hidden"
-    >
+    <div id="appointment" className="relative bg-white overflow-hidden">
       <div className="container mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center relative z-10">
-        {/* Left Section: FAQ */}
+        {/* FAQ Section */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -159,7 +204,7 @@ const Form = () => {
           </div>
         </motion.div>
 
-        {/* Right Section: Appointment Form */}
+        {/* Consultation Form Section */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -171,6 +216,7 @@ const Form = () => {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Name Input */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Full Name
@@ -185,9 +231,12 @@ const Form = () => {
                   errors.name ? "border-red-500" : "border-gray-300"
                 }`}
               />
-              {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+              {errors.name && (
+                <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+              )}
             </div>
 
+            {/* Email Input */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Email
@@ -202,9 +251,12 @@ const Form = () => {
                   errors.email ? "border-red-500" : "border-gray-300"
                 }`}
               />
-              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+              {errors.email && (
+                <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+              )}
             </div>
 
+            {/* Appointment Date and Time Picker */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Appointment Date & Time
@@ -225,9 +277,10 @@ const Form = () => {
               </LocalizationProvider>
             </div>
 
+            {/* Message Input */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Message
+                Additional Message
               </label>
               <textarea
                 name="message"
@@ -239,17 +292,35 @@ const Form = () => {
               />
             </div>
 
+            {/* Submit Button */}
             <motion.button
               type="submit"
+              disabled={isSubmitting}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition-colors"
+              className={`w-full px-8 py-4 text-white font-semibold rounded-lg shadow-lg transition-colors ${
+                isSubmitting 
+                  ? "bg-blue-400 cursor-not-allowed" 
+                  : "bg-blue-600 hover:bg-blue-700"
+              }`}
             >
-              Schedule Appointment
+              {isSubmitting ? "Submitting..." : "Schedule Appointment"}
             </motion.button>
           </form>
         </motion.div>
       </div>
+
+      {/* Submission Status Notifications */}
+      {submissionStatus === 'success' && (
+        <div className="fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50">
+          Appointment request submitted successfully!
+        </div>
+      )}
+      {submissionStatus === 'error' && (
+        <div className="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg shadow-lg z-50">
+          Failed to submit appointment. Please try again.
+        </div>
+      )}
 
       {/* Background Wave */}
       <PulseWave />
@@ -257,4 +328,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default ConsultationForm;
